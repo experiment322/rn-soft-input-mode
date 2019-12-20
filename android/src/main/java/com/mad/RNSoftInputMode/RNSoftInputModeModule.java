@@ -1,7 +1,6 @@
 package com.mad.RNSoftInputMode;
 
 import android.app.Activity;
-import android.view.WindowManager;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -12,18 +11,11 @@ import javax.annotation.Nonnull;
 
 public class RNSoftInputModeModule extends ReactContextBaseJavaModule {
 
-    private final int defaultSoftInputMode;
     private final ReactApplicationContext reactContext;
 
     public RNSoftInputModeModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
-
-        Activity activity = reactContext.getCurrentActivity();
-        this.defaultSoftInputMode =
-                activity != null
-                        ? activity.getWindow().getAttributes().softInputMode
-                        : WindowManager.LayoutParams.SOFT_INPUT_ADJUST_UNSPECIFIED;
     }
 
     @Override
@@ -44,7 +36,7 @@ public class RNSoftInputModeModule extends ReactContextBaseJavaModule {
                 }
             });
         } else {
-            promise.reject("Current activity is null.");
+            promise.reject(new Exception("Current activity is null."));
         }
     }
 
@@ -55,17 +47,13 @@ public class RNSoftInputModeModule extends ReactContextBaseJavaModule {
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    final int oldMode = activity.getWindow().getAttributes().softInputMode;
                     activity.getWindow().setSoftInputMode(mode);
-                    promise.resolve(mode);
+                    promise.resolve(oldMode);
                 }
             });
         } else {
-            promise.reject("Current activity is null.");
+            promise.reject(new Exception("Current activity is null."));
         }
-    }
-
-    @ReactMethod
-    public void resetSoftInputMode(final Promise promise) {
-        setSoftInputMode(this.defaultSoftInputMode, promise);
     }
 }

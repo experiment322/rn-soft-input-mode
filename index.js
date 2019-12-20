@@ -17,14 +17,8 @@ const setSoftInputMode = (mode) => Platform.select({
     android: NativeModules.RNSoftInputMode.setSoftInputMode(mode),
 });
 
-const resetSoftInputMode = () => Platform.select({
-    ios: Promise.resolve(),
-    android: NativeModules.RNSoftInputMode.resetSoftInputMode(),
-});
-
 export default {
     LAYOUT_PARAMS,
     getSoftInputMode,
     setSoftInputMode,
-    resetSoftInputMode,
 };
