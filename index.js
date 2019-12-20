@@ -7,15 +7,19 @@ const LAYOUT_PARAMS = {
     SOFT_INPUT_ADJUST_UNSPECIFIED: 0,
 };
 
-const getSoftInputMode = () => Platform.select({
-    android: NativeModules.RNSoftInputMode.getSoftInputMode,
-    ios: Promise.resolve,
-})();
+const getSoftInputMode = () => {
+    if (Platform.OS === "android") {
+        return NativeModules.RNSoftInputMode.getSoftInputMode();
+    }
+    return Promise.resolve(LAYOUT_PARAMS.SOFT_INPUT_ADJUST_UNSPECIFIED);
+};
 
-const setSoftInputMode = (mode) => Platform.select({
-    android: NativeModules.RNSoftInputMode.setSoftInputMode,
-    ios: Promise.resolve,
-})(mode);
+const setSoftInputMode = (mode) => {
+    if (Platform.OS === "android") {
+        return NativeModules.RNSoftInputMode.setSoftInputMode(mode);
+    }
+    return Promise.resolve(LAYOUT_PARAMS.SOFT_INPUT_ADJUST_UNSPECIFIED);
+};
 
 export default {
     LAYOUT_PARAMS,
