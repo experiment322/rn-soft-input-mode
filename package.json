@@ -1,0 +1,33 @@
+{
+  "name": "react-native-soft-input-mode",
+  "title": "React Native Soft Input Mode",
+  "version": "1.0.0",
+  "description": "A react-native module which exposes a simple API to change the soft input mode on Android at runtime",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/experiment322/react-native-soft-input-mode.git",
+    "baseUrl": "https://github.com/experiment322/react-native-soft-input-mode"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": {
+    "name": "Alexandru Damian Manea",
+    "email": "maneaalexdamian@gmail.com"
+  },
+  "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "readmeFilename": "README.md",
+  "peerDependencies": {
+    "react": "^16.8.1",
+    "react-native": ">=0.59.0-rc.0 <1.0.x"
+  },
+  "devDependencies": {
+    "react": "^16.8.3",
+    "react-native": "^0.59.10"
+  }
+}
