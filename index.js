@@ -1,4 +1,4 @@
-import {NativeModules} from 'react-native';
+import {NativeModules, Platform} from 'react-native';
 
 const LAYOUT_PARAMS = {
     SOFT_INPUT_ADJUST_NOTHING: 48,
@@ -7,9 +7,15 @@ const LAYOUT_PARAMS = {
     SOFT_INPUT_ADJUST_UNSPECIFIED: 0
 };
 
-const getSoftInputMode = () => NativeModules.RNSoftInputMode.getSoftInputMode();
+const getSoftInputMode = () => Platform.select({
+    ios: Promise.resolve(),
+    android: NativeModules.RNSoftInputMode.getSoftInputMode()
+});
 
-const setSoftInputMode = (mode) => NativeModules.RNSoftInputMode.setSoftInputMode(mode);
+const setSoftInputMode = (mode) => Platform.select({
+    ios: Promise.resolve(),
+    android: NativeModules.RNSoftInputMode.setSoftInputMode(mode)
+});
 
 export default {
     LAYOUT_PARAMS,
