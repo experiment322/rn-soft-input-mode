@@ -25,21 +25,32 @@ public class RNSoftInputModeModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setSoftInputMode(int mode, Promise promise) {
-        Activity activity = reactContext.getCurrentActivity();
+    public void setSoftInputMode(final int mode, final Promise promise) {
+        final Activity activity = reactContext.getCurrentActivity();
         if (activity != null) {
-            activity.getWindow().setSoftInputMode(mode);
-            promise.resolve(null);
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    activity.getWindow().setSoftInputMode(mode);
+                    promise.resolve(mode);
+                }
+            });
         } else {
             promise.reject("Current activity is null.");
         }
     }
 
     @ReactMethod
-    public void getSoftInputMode(Promise promise) {
-        Activity activity = reactContext.getCurrentActivity();
+    public void getSoftInputMode(final Promise promise) {
+        final Activity activity = reactContext.getCurrentActivity();
         if (activity != null) {
-            promise.resolve(activity.getWindow().getAttributes().softInputMode);
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    final int mode = activity.getWindow().getAttributes().softInputMode;
+                    promise.resolve(mode);
+                }
+            });
         } else {
             promise.reject("Current activity is null.");
         }
