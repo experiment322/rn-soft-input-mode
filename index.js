@@ -8,14 +8,14 @@ const LAYOUT_PARAMS = {
 };
 
 const getSoftInputMode = () => Platform.select({
-    ios: Promise.resolve(),
-    android: NativeModules.RNSoftInputMode.getSoftInputMode(),
-});
+    android: NativeModules.RNSoftInputMode.getSoftInputMode,
+    ios: Promise.resolve,
+})();
 
 const setSoftInputMode = (mode) => Platform.select({
-    ios: Promise.resolve(),
-    android: NativeModules.RNSoftInputMode.setSoftInputMode(mode),
-});
+    android: NativeModules.RNSoftInputMode.setSoftInputMode,
+    ios: Promise.resolve,
+})(mode);
 
 export default {
     LAYOUT_PARAMS,
