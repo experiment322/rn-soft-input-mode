@@ -4,21 +4,27 @@ const LAYOUT_PARAMS = {
     SOFT_INPUT_ADJUST_NOTHING: 48,
     SOFT_INPUT_ADJUST_PAN: 32,
     SOFT_INPUT_ADJUST_RESIZE: 16,
-    SOFT_INPUT_ADJUST_UNSPECIFIED: 0
+    SOFT_INPUT_ADJUST_UNSPECIFIED: 0,
 };
 
 const getSoftInputMode = () => Platform.select({
     ios: Promise.resolve(),
-    android: NativeModules.RNSoftInputMode.getSoftInputMode()
+    android: NativeModules.RNSoftInputMode.getSoftInputMode(),
 });
 
 const setSoftInputMode = (mode) => Platform.select({
     ios: Promise.resolve(),
-    android: NativeModules.RNSoftInputMode.setSoftInputMode(mode)
+    android: NativeModules.RNSoftInputMode.setSoftInputMode(mode),
+});
+
+const resetSoftInputMode = () => Platform.select({
+    ios: Promise.resolve(),
+    android: NativeModules.RNSoftInputMode.resetSoftInputMode(),
 });
 
 export default {
     LAYOUT_PARAMS,
     getSoftInputMode,
-    setSoftInputMode
+    setSoftInputMode,
+    resetSoftInputMode,
 };
