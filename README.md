@@ -1,4 +1,4 @@
-# react-native-soft-input-mode
+# rn-soft-input-mode
 
 A react-native module which exposes a simple API to change the soft input mode on Android at runtime.
 Check:
@@ -9,17 +9,17 @@ Note: this modules does nothing on iOS and simply returns 0 to absolve the user 
 
 ## Getting started
 
-`$ npm install react-native-soft-input-mode --save`
+`$ npm install rn-soft-input-mode --save`
 
 ### Linking
 
 Note: linking is required only for `react-native < 0.60.0`.
 
-`$ react-native link react-native-soft-input-mode`
+`$ react-native link rn-soft-input-mode`
 
 ## Usage
 ```javascript
-import RNSoftInputMode from 'react-native-soft-input-mode';
+import RNSoftInputMode from 'rn-soft-input-mode';
 
 // All possible soft input modes
 const { LAYOUT_PARAMS } = RNSoftInputMode;
